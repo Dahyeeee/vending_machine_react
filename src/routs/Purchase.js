@@ -4,14 +4,16 @@ import ProductTable from "../components/ProductTable";
 import Tap from "../components/Tap"
 
 function Purchase(){
-    const [products] =useState(
+    const [products, setProducts] =useState(
         Object.entries(localStorage)
                 .filter(([key]) => key !== 'money' && key !=='change')
                 .map(([key, valueJSON])=>{ 
             const value =JSON.parse(valueJSON);
+            console.log([key, value])
             return value;
         })
       );
+      console.log(products)
     const [input, setInput] =useState();
     const [money, setMoney] =useState(localStorage.getItem('money') | null);
     const change = localStorage.getItem('change')
@@ -41,7 +43,9 @@ function Purchase(){
             localStorage.setItem('money', money)
         }
     }
-    function purchase(){
+    function purchase(products){
+        setProducts({...products,
+                    })
         
     }
 
@@ -51,6 +55,8 @@ function Purchase(){
                      coin100: Math.floor(money%500/100),
                     coin50: Math.floor(money%500%100/50),
                     coin10: Math.floor(money%500%100%50/10)})
+            localStorage.setItem('change',+change-+money)
+            
         }else{
             setCoin(({coin500: Math.floor(change/500),
                     coin100: Math.floor(change%500/100),
@@ -71,7 +77,7 @@ function Purchase(){
             </div>
             <div>
                 <h3>구매할 수 있는 상품 현황</h3>
-                <ProductTable products={products} purchaseTr={`구매`} purchaseBtn={<button onClick={ purchase }>구매하기</button>}/>
+                <ProductTable products={products} purchaseTr={`구매`} purchaseBtn={<button onClick={ ()=>purchase({}) }>구매하기</button>}/>
             </div>
             <div>
                 <h3>잔돈</h3>
