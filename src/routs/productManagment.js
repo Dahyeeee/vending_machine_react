@@ -4,6 +4,10 @@ import AddProduct from "../components/AddProduct";
 import ProductTable from "../components/ProductTable";
 
 function ProductManagment() {
+  useEffect(() => {
+    document.title = "자판기";
+  }, []);
+
   const [inputs, setInputs] = useState({
     id: "",
     productName: "",

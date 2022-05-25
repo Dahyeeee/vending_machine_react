@@ -13,6 +13,7 @@ function ProductTable({ products, purchaseBtn, purchaseTr, purchase }) {
       {products
         ? products.map((product) => (
             <Product
+              key={product.id}
               product={product}
               purchaseBtn={purchaseBtn}
               purchase={purchase}

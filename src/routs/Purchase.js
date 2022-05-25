@@ -89,7 +89,7 @@ function Purchase() {
         <h3>금액 투입</h3>
         <input type="number" value={input} onChange={onChange} />
         <input type="button" value="투입하기" onClick={insertMoney} /> <br />
-        <text>투입한 금액 :{`${money > 0 ? money : 0}원`} </text>
+        투입한 금액 :{`${money > 0 ? money : 0}원`}
       </div>
       <div>
         <h3>구매할 수 있는 상품 현황</h3>
