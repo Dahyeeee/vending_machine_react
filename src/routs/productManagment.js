@@ -11,7 +11,7 @@ function ProductManagment() {
     productQuantity: "",
   });
   const [products, setProducts] = useState(
-    !localStorage.getItem("products") == []
+    !localStorage.getItem("products") === []
       ? JSON.parse(localStorage.getItem("products"))
       : []
   );
@@ -27,7 +27,11 @@ function ProductManagment() {
   );
 
   function checkValidity() {
-    if (inputs && +inputs.productPrice % 10 !== 0) {
+    if (inputs.productName === "") {
+      alert("상품명을 입력하세요");
+      return false;
+    }
+    if (+inputs.productPrice % 10 !== 0 || +inputs.productPrice === 0) {
       alert("10원단위로 입력하세요");
       return false;
     }

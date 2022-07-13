@@ -19,6 +19,7 @@ function AddProduct({ products, onChange, onAdd }) {
           placeholder="가격"
           onChange={onChange}
           value={productPrice}
+          step="10"
         />
         <input
           name="productQuantity"
