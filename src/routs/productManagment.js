@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Tap from "../components/Tap";
 import AddProduct from "../components/AddProduct";
 import ProductTable from "../components/ProductTable";
 
 function ProductManagment() {
-  useEffect(() => {
-    document.title = "자판기";
-  }, []);
-
   const [inputs, setInputs] = useState({
     id: "",
     productName: "",
@@ -22,10 +18,13 @@ function ProductManagment() {
 
   const { productName, productPrice, productQuantity } = inputs;
 
-  function getValue(event) {
-    const { value, name } = event.target;
-    setInputs({ ...inputs, [name]: value });
-  }
+  const getValue = useCallback(
+    (event) => {
+      const { value, name } = event.target;
+      setInputs({ ...inputs, [name]: value });
+    },
+    [inputs]
+  );
 
   function checkValidity() {
     if (inputs && +inputs.productPrice % 10 !== 0) {
